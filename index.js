@@ -27,3 +27,69 @@ Since there is exactly 1 pair each for red, blue, and black gloves, and 3 leftov
 */
 
 // Write your code below: 
+
+function countGloves(glovesArray) {
+    let gloves = {};
+  
+    for (let i = 0; i < glovesArray.length; i++) {
+      let color = glovesArray[i];
+      if (!gloves[color]) {
+        gloves[color] = 1;
+      } else {
+        gloves[color]++;
+      }
+    }
+  
+    let leftovers = 0;
+  
+    for (let color in gloves) {
+      if (gloves[color] % 2 !== 0) {
+        gloves[color]--;
+        leftovers++;
+      }
+    }
+  
+    gloves['leftovers'] = leftovers;
+  
+    return gloves;
+  }
+
+
+  //or
+
+  let glovesArray = ["red", "green", "red", "blue", "blue"];
+let result = countGloves(glovesArray);
+console.log({
+  red: 1,
+  green: 1,
+  blue: 1,
+  leftovers: 1
+});
+
+function countGloves(glovesArray) {
+  let gloves = {};
+
+  for (let i = 0; i < glovesArray.length; i++) {
+    let color = glovesArray[i];
+    if (!gloves[color]) {
+      gloves[color] = 1;
+    } else {
+      gloves[color]++;
+    }
+  }
+
+  let leftovers = 0;
+
+  for (let color in gloves) {
+    if (gloves[color] % 2 === 0) {
+      gloves[color] /= 2;
+    } else {
+      gloves[color] = Math.floor(gloves[color] / 2);
+      leftovers++;
+    }
+  }
+
+  gloves['leftovers'] = leftovers;
+
+  return gloves;
+}
